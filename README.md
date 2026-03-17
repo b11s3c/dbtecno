@@ -1,1 +1,14 @@
-The DBtecno project is an e-commerce project created with php and developed on the sale of technology. Functions such as liking products, commenting, adding them to the cart and placing orders are available. Through the Admin panel, many categories such as product management, order management, customer management, inventory management and user management can be managed.
+# DBtecno
+
+DBtecno, teknoloji ürünleri satışı için geliştirilmiş bir e-ticaret projesidir. Eski sürümde saf PHP dosya yapısı kullanılmaktadır.
+
+## Bu repoda yapılan iyileştirme
+Bu çalışma kapsamında proje için Laravel tabanlı, modern bir mimariye geçiş amacıyla `laravel-app/` altında bir **refactor blueprint** hazırlandı.
+
+Öne çıkanlar:
+- Route + Controller tabanlı MVC yapı
+- Eloquent modelleri (`Product`, `CartItem`, `Favorite`, `Evaluation`)
+- Migration dosyaları ile şema yönetimi
+- Ürün, sepet ve favoriler için örnek Blade sayfaları
+
+Detaylar için: [`laravel-app/README.md`](laravel-app/README.md)
