@@ -10,6 +10,8 @@ class CartItem extends Model
 {
     use HasFactory;
 
+    protected $table = 'cart_items';
+
     protected $fillable = [
         'customer_id',
         'product_id',
@@ -23,6 +25,8 @@ class CartItem extends Model
             'unit_price' => 'decimal:2',
         ];
     }
+
+    ];
 
     public function product(): BelongsTo
     {

@@ -12,6 +12,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('code')->unique();
             $table->string('image', 255)->nullable();
+            $table->string('image', 100);
             $table->string('brand', 60);
             $table->string('model', 120);
             $table->string('series', 120)->nullable();
@@ -24,6 +25,9 @@ return new class extends Migration
             $table->decimal('discount_price', 10, 2)->nullable();
             $table->unsignedInteger('stock')->default(0);
             $table->boolean('is_active')->default(true)->index();
+            $table->json('specs')->nullable();
+            $table->decimal('price', 10, 2)->default(0);
+            $table->unsignedInteger('stock')->default(0);
             $table->timestamps();
         });
     }

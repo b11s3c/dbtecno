@@ -53,4 +53,13 @@
             <a href="{{ route('checkout.index') }}" class="btn" style="width:100%; margin-top:14px;">Ödemeye Geç</a>
         </aside>
     </div>
+    <h1>Sepetim</h1>
+    @forelse($cartItems as $item)
+        <article class="card">
+            <strong>{{ $item->product->brand }} {{ $item->product->model }}</strong>
+            <p>Adet: {{ $item->quantity }}</p>
+        </article>
+    @empty
+        <p>Sepetiniz boş.</p>
+    @endforelse
 @endsection

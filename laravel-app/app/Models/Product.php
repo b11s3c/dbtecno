@@ -25,6 +25,9 @@ class Product extends Model
         'discount_price',
         'stock',
         'is_active',
+        'price',
+        'stock',
+        'specs',
     ];
 
     protected function casts(): array
@@ -55,5 +58,6 @@ class Product extends Model
     public function getCurrentPriceAttribute(): string
     {
         return (string) ($this->discount_price ?: $this->price);
+        return $this->hasMany(Evaluation::class);
     }
 }
