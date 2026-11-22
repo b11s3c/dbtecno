@@ -1,0 +1,25 @@
+# Hassas yapılandırma dosyaları
+.env
+parts/config.php
+
+# Composer / PHP bağımlılıkları
+/vendor/
+composer.phar
+*.log
+
+# IDE ve editör dosyaları
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# İşletim sistemi dosyaları
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Geçici ve yedek dosyalar
+*.bak
+*.tmp
+*.orig

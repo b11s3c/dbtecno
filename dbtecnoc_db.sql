@@ -29,15 +29,18 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admins` (
   `id` int(11) NOT NULL,
-  `ad` varchar(55) NOT NULL,
-  `soyad` varchar(55) NOT NULL,
-  `e_posta` varchar(55) NOT NULL,
-  `sifre` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `ad` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soyad` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `e_posta` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sifre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `admins`
 --
+
+INSERT INTO `admins` (`id`, `ad`, `soyad`, `e_posta`, `sifre`) VALUES
+(1, 'Yönetici', 'DBtecno', 'admin@dbtecno.local', '$2y$10$9OF1GIuPYPgBwWjCH52IgeH5LAtP5N0WcyyWa7OG51NiH/cWjJj.i');
 
 -- --------------------------------------------------------
 
@@ -60,6 +63,11 @@ CREATE TABLE `adres` (
 --
 -- Tablo döküm verisi `adres`
 --
+
+INSERT INTO `adres` (`adres_id`, `musteri_id`, `ad`, `soyad`, `telefon`, `title`, `il`, `ilce`, `adres`) VALUES
+(1, 1, 'Ahmet', 'Yılmaz', '5551234567', 'Ev', 'İstanbul', 'Kadıköy', 'Caferağa Mah. Moda Cad. No:42 D:6'),
+(2, 1, 'Ahmet', 'Yılmaz', '5551234567', 'Ofis', 'İstanbul', 'Beşiktaş', 'Levent Mah. Büyükdere Cad. No:128 Kat:4'),
+(3, 2, 'Zeynep', 'Kaya', '5552345678', 'Ev', 'Ankara', 'Çankaya', 'Bahçelievler Mah. 7. Cadde No:19 D:3');
 
 -- --------------------------------------------------------
 
@@ -138,19 +146,49 @@ INSERT INTO `computers` (`id`, `urun_kodu`, `resim_adi`, `marka`, `model`, `seri
 CREATE TABLE `evaluations` (
   `evaluation_id` int(11) NOT NULL,
   `urun_kodu` int(11) NOT NULL,
-  `urun` varchar(55) NOT NULL,
+  `urun` varchar(55) COLLATE utf8mb4_unicode_ci NOT NULL,
   `musteri_id` int(11) NOT NULL,
-  `ad` varchar(15) NOT NULL,
-  `soyad` varchar(15) NOT NULL,
+  `ad` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `soyad` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
   `puan` double NOT NULL,
-  `yorum` text NOT NULL,
+  `yorum` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `add_time` date NOT NULL,
   `onay` int(1) NOT NULL DEFAULT '1'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `evaluations`
 --
+
+INSERT INTO `evaluations` (`evaluation_id`, `urun_kodu`, `urun`, `musteri_id`, `ad`, `soyad`, `puan`, `yorum`, `add_time`, `onay`) VALUES
+(1, 1006, 'Asus Rog Strix G16 G614JU-N3196', 1, 'Ahmet', 'Yılmaz', 5, 'Soğutma performansı ve ekran kalitesi harika, oyunlarda çok akıcı çalışıyor.', '2024-11-12', 1),
+(2, 1006, 'Asus Rog Strix G16 G614JU-N3196', 2, 'Zeynep', 'Kaya', 5, 'Kargo ertesi gün ulaştı, malzeme kalitesi beklentimin üzerinde.', '2024-11-18', 1),
+(3, 1006, 'Asus Rog Strix G16 G614JU-N3196', 3, 'Mehmet', 'Demir', 4, 'Performans çok iyi, yalnızca adaptörü biraz ağır.', '2024-11-25', 1),
+(4, 1002, 'Huawei MateBook D15', 1, 'Ahmet', 'Yılmaz', 5, 'Ofis ve yazılım geliştirme için hafif, sessiz ve hızlı bir cihaz.', '2024-11-10', 1),
+(5, 1003, 'Monster Abra A5 V17.3.4', 2, 'Zeynep', 'Kaya', 4, '32 GB RAM ile çoklu görevlerde sorunsuz performans veriyor.', '2024-11-14', 1),
+(6, 1005, 'Lenovo LOQ', 3, 'Mehmet', 'Demir', 5, 'Fiyat/performans açısından RTX 4050 ekran kartıyla oldukça tatmin edici.', '2024-11-20', 1),
+(7, 1008, 'Huawei MateBook D14', 2, 'Zeynep', 'Kaya', 4, 'Kompakt boyutu sayesinde taşıması çok rahat, pil ömrü başarılı.', '2024-11-22', 1),
+(8, 2006, 'Apple iPhone 15 Pro', 1, 'Ahmet', 'Yılmaz', 5, 'Titanyum kasa çok hafif ve kamera kalitesi gerçekten üst düzey.', '2024-11-15', 1),
+(9, 2006, 'Apple iPhone 15 Pro', 2, 'Zeynep', 'Kaya', 5, 'Akıcılığı ve USB-C geçişi kullanım kolaylığı sağlıyor.', '2024-11-19', 1),
+(10, 2007, 'Samsung Galaxy S23', 3, 'Mehmet', 'Demir', 5, 'Kompakt amiral gemisi arayanlar için çok dengeli bir telefon.', '2024-11-16', 1),
+(11, 2002, 'Apple iPhone 13', 2, 'Zeynep', 'Kaya', 5, 'Günlük kullanımda pil ve kamera performansı hâlâ çok güçlü.', '2024-11-11', 1),
+(12, 2001, 'Xiaomi Redmi Note 12 Pro', 1, 'Ahmet', 'Yılmaz', 4, '108 MP kamerası ve 5000 mAh bataryası bu segmentte çok iyi.', '2024-11-09', 1),
+(13, 2004, 'Samsung Galaxy A34', 3, 'Mehmet', 'Demir', 4, 'Ekran parlaklığı ve batarya süresi gayet yeterli.', '2024-11-21', 1),
+(14, 3009, 'LG OLED55CS3VA', 1, 'Ahmet', 'Yılmaz', 5, 'Siyah derinliği ve OLED görüntü kalitesi sinema keyfini eve taşıyor.', '2024-11-13', 1),
+(15, 3004, 'Vestel 65QA9700', 2, 'Zeynep', 'Kaya', 4, 'QLED panel canlı renkler sunuyor, Android arayüzü akıcı.', '2024-11-17', 1),
+(16, 3003, 'Philips 65PUS8848', 3, 'Mehmet', 'Demir', 5, 'Büyük ekranda 4K içerikler çok net, kurulum hızlı yapıldı.', '2024-11-23', 1),
+(17, 3010, 'Samsung 50Q60C', 1, 'Ahmet', 'Yılmaz', 5, 'İnce tasarımı ve Tizen işletim sistemi çok pratik.', '2024-11-19', 1),
+(18, 3001, 'Toshiba 65UA3D63DT', 2, 'Zeynep', 'Kaya', 4, 'Fiyatına göre görüntü ve ses kalitesi tatmin edici.', '2024-11-24', 1),
+(19, 4007, 'Samsung Galaxy Tab S9 FE+ SM-X610', 1, 'Ahmet', 'Yılmaz', 5, 'Geniş ekranı ve kalem desteği not almak için mükemmel.', '2024-11-14', 1),
+(20, 4009, 'Apple iPad Air 5. Nesil', 2, 'Zeynep', 'Kaya', 5, 'Performansı bilgisayar aratmıyor, ekran keskinliği çok iyi.', '2024-11-18', 1),
+(21, 4004, 'Apple iPad 9.Nesil', 3, 'Mehmet', 'Demir', 4, 'Ders ve günlük kullanım için oldukça akıcı bir tablet.', '2024-11-20', 1),
+(22, 4001, 'Honor Pad X9', 1, 'Ahmet', 'Yılmaz', 4, 'Dizi ve video izlemek için ekran kalitesi çok başarılı.', '2024-11-22', 1),
+(23, 4008, 'Xiaomi Redmi Pad Se', 2, 'Zeynep', 'Kaya', 4, '256 GB depolama ve 8 GB RAM ile fiyatına göre çok iyi.', '2024-11-26', 1),
+(24, 5008, 'Apple Watch Ultra 2', 1, 'Ahmet', 'Yılmaz', 5, 'Ekran parlaklığı, dayanıklılığı ve pil süresi diğer modellere göre çok üstün.', '2024-11-16', 1),
+(25, 5007, 'Apple Watch Seri 9', 2, 'Zeynep', 'Kaya', 5, 'Bildirim takibi ve sağlık sensörleri çok hızlı çalışıyor.', '2024-11-19', 1),
+(26, 5005, 'Samsung Galaxy Watch 6', 3, 'Mehmet', 'Demir', 5, 'Şık tasarım ve uyku takibi özellikleri çok kullanışlı.', '2024-11-21', 1),
+(27, 5002, 'Huawei Watch GT4', 1, 'Ahmet', 'Yılmaz', 5, 'Şarjı bir haftadan fazla gidiyor, klasik saat görünümü çok şık.', '2024-11-23', 1),
+(28, 5006, 'Huawei Watch GT 3 Pro', 2, 'Zeynep', 'Kaya', 4, 'Titanyum kasa kalitesi hissiyat olarak çok iyi.', '2024-11-25', 1);
 
 -- --------------------------------------------------------
 
@@ -162,11 +200,16 @@ CREATE TABLE `favorites` (
   `musteri_id` int(11) NOT NULL,
   `urun_kodu` int(11) NOT NULL,
   `add_time` datetime NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `favorites`
 --
+
+INSERT INTO `favorites` (`musteri_id`, `urun_kodu`, `add_time`) VALUES
+(1, 1006, '2024-11-20 14:15:00'),
+(1, 2006, '2024-11-21 09:30:00'),
+(1, 5008, '2024-11-22 18:45:00');
 
 -- --------------------------------------------------------
 
@@ -181,14 +224,25 @@ CREATE TABLE `orders` (
   `birim_fiyat` int(11) NOT NULL,
   `fiyat` int(11) NOT NULL,
   `miktar` int(11) NOT NULL,
-  `adres` varchar(255) NOT NULL,
+  `adres` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `add_time` datetime NOT NULL,
   `durum` int(1) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `orders`
 --
+
+INSERT INTO `orders` (`siparis_id`, `musteri_id`, `urun_kodu`, `birim_fiyat`, `fiyat`, `miktar`, `adres`, `add_time`, `durum`) VALUES
+(1, 1, 1002, 20500, 20500, 1, 'Caferağa Mah. Moda Cad. No:42 D:6', '2024-11-05 11:20:00', 3),
+(2, 1, 2006, 64999, 64999, 1, 'Caferağa Mah. Moda Cad. No:42 D:6', '2024-11-11 16:40:00', 3),
+(3, 2, 1006, 41499, 41499, 1, 'Bahçelievler Mah. 7. Cadde No:19 D:3', '2024-11-14 10:15:00', 3),
+(4, 2, 5007, 14890, 14890, 1, 'Bahçelievler Mah. 7. Cadde No:19 D:3', '2024-11-16 19:05:00', 3),
+(5, 3, 2007, 28129, 28129, 1, 'Alsancak Mah. Kıbrıs Şehitleri Cad. No:88 İzmir', '2024-11-18 13:50:00', 3),
+(6, 1, 4007, 13099, 13099, 1, 'Levent Mah. Büyükdere Cad. No:128 Kat:4', '2024-11-24 09:10:00', 1),
+(7, 1, 1006, 41499, 41499, 1, 'Caferağa Mah. Moda Cad. No:42 D:6', '2024-11-26 14:30:00', 0),
+(8, 2, 3009, 40459, 40459, 1, 'Bahçelievler Mah. 7. Cadde No:19 D:3', '2024-11-27 11:05:00', 0),
+(9, 3, 5002, 6999, 13998, 2, 'Alsancak Mah. Kıbrıs Şehitleri Cad. No:88 İzmir', '2024-11-27 15:45:00', 0);
 
 
 -- --------------------------------------------------------
@@ -247,6 +301,14 @@ CREATE TABLE `sepet` (
   `add_time` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Tablo döküm verisi `sepet`
+--
+
+INSERT INTO `sepet` (`sepet_id`, `musteri_id`, `urun_kodu`, `miktar`, `add_time`) VALUES
+(1, 1, 1006, 1, '2024-11-27 16:10:00'),
+(2, 1, 5008, 1, '2024-11-27 16:12:00');
+
 -- --------------------------------------------------------
 
 --
@@ -300,7 +362,7 @@ CREATE TABLE `stokfiyat` (
   `urun_kodu` int(11) NOT NULL,
   `stok` int(11) NOT NULL,
   `fiyat` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Tablo döküm verisi `stokfiyat`
@@ -458,6 +520,11 @@ CREATE TABLE `users` (
 -- Tablo döküm verisi `users`
 --
 
+INSERT INTO `users` (`id`, `ad`, `soyad`, `dogum_tarih`, `e_posta`, `telefon`, `sifre`, `durum`, `recording_time`, `login_time`) VALUES
+(1, 'Ahmet', 'Yılmaz', '1996-05-14', 'demo@dbtecno.local', '5551234567', '$2y$10$XzPkMJNaNOkFA5JPnFor7OSPck0DTwRLYgXm8t7mz08q7lRr90IAm', b'1', '2024-10-12 09:30:00', '2024-11-27 16:05:00'),
+(2, 'Zeynep', 'Kaya', '1998-09-22', 'zeynep@dbtecno.local', '5552345678', '$2y$10$XzPkMJNaNOkFA5JPnFor7OSPck0DTwRLYgXm8t7mz08q7lRr90IAm', b'1', '2024-10-18 14:15:00', '2024-11-27 11:00:00'),
+(3, 'Mehmet', 'Demir', '1994-02-08', 'mehmet@dbtecno.local', '5553456789', '$2y$10$XzPkMJNaNOkFA5JPnFor7OSPck0DTwRLYgXm8t7mz08q7lRr90IAm', b'1', '2024-10-25 18:40:00', '2024-11-27 15:40:00');
+
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -592,7 +659,7 @@ ALTER TABLE `phones`
 -- Tablo için AUTO_INCREMENT değeri `sepet`
 --
 ALTER TABLE `sepet`
-  MODIFY `sepet_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `sepet_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `smart_watchs`

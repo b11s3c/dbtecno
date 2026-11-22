@@ -1,23 +1,27 @@
-version: '3.1'
-
 services:
   db:
-    image: mysql:5.7
+    image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: change_me_root
-      MYSQL_DATABASE: dbtecnoc_db
-      MYSQL_USER: dbtecnoc_user
-      MYSQL_PASSWORD: change_me
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-change_me_root}
+      MYSQL_DATABASE: ${DB_NAME:-dbtecnoc_db}
+      MYSQL_USER: ${DB_USER:-dbtecno_user}
+      MYSQL_PASSWORD: ${DB_PASS:-change_me}
+    volumes:
+      - ./dbtecnoc_db.sql:/docker-entrypoint-initdb.d/dbtecnoc_db.sql:ro
 
   web:
     image: php:8.2-apache
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-dbtecnoc_db}
+      DB_USER: ${DB_USER:-dbtecno_user}
+      DB_PASS: ${DB_PASS:-change_me}
     volumes:
       - .:/var/www/html
     ports:
       - "8085:80"
     depends_on:
-      - db
-    links:
       - db
     command: >
       sh -c "docker-php-ext-install mysqli && apache2-foreground"
@@ -30,6 +34,4 @@ services:
     ports:
       - "8086:80"
     depends_on:
-      - db
-    links:
       - db
